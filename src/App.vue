@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <v-btn base-color="#cda45f" @click="">Hello</v-btn>
+    <RouterView />
 </template>
 
 <style scoped></style>
