@@ -22,6 +22,9 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const email = ref('');
 const password = ref('');
@@ -41,11 +44,12 @@ const login = async () => {
         email: email.value,
         password: password.value,
     };
-    const { data } = await axios.post('http://192.168.1.196:3000/auth/login', body);
+    // import.meta.env.VITE_API_URL
+    const { data } = await axios.post(import.meta.env.VITE_API_URL + '/auth/login', body);
 
     if (data.access_token) {
         localStorage.setItem('accessToken', data.access_token);
+        router.push({ name: 'home' });
     }
-
 }
 </script>
